@@ -2,13 +2,42 @@ defmodule CardSim.Card do
   @moduledoc """
   Individual Card logic
   """
+  
+  alias CardSim.Deck
+  
+  @typedoc """
+  Tuple that represents a single card.
+  
+  {card_type, card_value}
+  
+  Card Type   =>  0 - 3
+                 - Spades    => 0
+                 - Clubs     => 1
+                 - Diamonds  => 2
+                 - Hearts    => 3
+                 
+  Card Value  => Number card we are working on. 2-14 (2-Ace)
+                  - Values 2 - 10 are the card values themselves.
+                  - Values 11 - 14 are Jack (11), Queen (12), King (13) Ace (14)
+                  - Jokers are {8, 99} (black), {9, 99} (red)
 
+  Examples:
+                  
+  - {0, 2}  => 2 of Spades
+  - {1, 13} => King of Clubs
+  - {8, 99} => Red Joker
+  
+  """
+  @type t() :: {non_neg_integer(), non_neg_integer()}
+  
+  
   #
   #
   @doc """
   Makes produces cards using an accumulator.
   """
   # entry point (w/ Jokers)
+  @spec produce_cards(non_neg_integer(), keyword()) :: Deck.t()
   def produce_cards(no_decks, jokers: jokers) when no_decks >= 1 do
     # Starts with a 1
     produce(no_decks, 1, 0, 2, jokers, [])
@@ -16,6 +45,7 @@ defmodule CardSim.Card do
 
   #
   # entry point (w/o Jokers)
+  @spec produce_cards(non_neg_integer()) :: Deck.t()
   def produce_cards(no_decks) when no_decks >= 1 do
     produce(no_decks, 1, 0, 2, false, [])
   end
