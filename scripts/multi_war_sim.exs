@@ -15,7 +15,7 @@ defmodule Funcs do
   end
   #
   #
-  def iterate(iters, _, iter_acc, state) when iters <= iter_acc, do: state
+  def iterate(iters, _, iter_acc, state) when iters < iter_acc, do: state
   def iterate(iters, decks, iter_acc, state) do
     # generate 2 decks
     {d1, d2} = CardSim.generate_deck(decks) |> Deck.shuffle() |> Deck.half_deck()
@@ -33,6 +33,7 @@ defmodule Funcs do
       end
 
     result = :timer.tc(fn -> loop.({d1, d2}, 1, loop) end)
+    IO.inspect(game_num: iter_acc, result: result)
     iterate(iters, decks, iter_acc + 1, [result | state])
   end
   #
