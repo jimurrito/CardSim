@@ -92,17 +92,17 @@ defmodule Games.War do
     |> case do
       # Both empty decks
       {true, true} ->
-        IO.inspect(winner: :draw)
+        #IO.inspect(winner: :draw)
         {:win, :draw}
 
       # 2nd player out of cards
       {_, true} ->
-        IO.inspect(winner: :player1)
+        #IO.inspect(winner: :player1)
         {:win, :player1}
 
       # 1st player is out of cards
       {true, _} ->
-        IO.inspect(winner: :player2)
+        #IO.inspect(winner: :player2)
         {:win, :player2}
 
       # both players have cards
@@ -114,19 +114,19 @@ defmodule Games.War do
         |> case do
           # Player one won battle
           1 ->
-            IO.inspect(result: :player1, player1: c1, player2: c2)
+            #IO.inspect(result: :player1, player1: c1, player2: c2)
             d1 = put_end(d1, Enum.shuffle(prize))
             {d1, d2}
 
           # Player one won battle
           2 ->
-            IO.inspect(result: :player2, player1: c1, player2: c2)
+            #IO.inspect(result: :player2, player1: c1, player2: c2)
             d2 = put_end(d2, Enum.shuffle(prize))
             {d1, d2}
 
           # WAR Declared
           3 ->
-            IO.inspect(result: :war, player1: c1, player2: c2)
+            #IO.inspect(result: :war, player1: c1, player2: c2)
             war(d1, d2, prize, 1)
         end
     end
@@ -145,15 +145,15 @@ defmodule Games.War do
       #
       # Empty checks
       {{:empty, _}, {:empty, _}} ->
-        IO.inspect(war_winner: :draw)
+        #IO.inspect(war_winner: :draw)
         {:win, :draw}
 
       {_, {:empty, _}} ->
-        IO.inspect(war_winner: :player1)
+        #IO.inspect(war_winner: :player1)
         {:win, :player1}
 
       {{:empty, _}, _} ->
-        IO.inspect(war_winner: :player2)
+        #IO.inspect(war_winner: :player2)
         {:win, :player2}
 
       #
@@ -167,18 +167,18 @@ defmodule Games.War do
         |> case do
           # player 1 wins
           1 ->
-            IO.inspect(war_result: :player1, player1: c1, player2: c2)
+            #IO.inspect(war_result: :player1, player1: c1, player2: c2)
             {put_end(d1, Enum.shuffle(prize)), d2}
 
           # Player 2 wins
           2 ->
-            IO.inspect(war_result: :player2, player1: c1, player2: c2)
+            #IO.inspect(war_result: :player2, player1: c1, player2: c2)
             {d1, put_end(d2, Enum.shuffle(prize))}
 
           # Nested WAR
           3 ->
             acc = acc + 1
-            IO.inspect(war_result: :nested_war, level: acc, player1: c1, player2: c2)
+            #IO.inspect(war_result: :nested_war, level: acc, player1: c1, player2: c2)
             war(d1, d2, prize, acc)
         end
     end
