@@ -13,13 +13,15 @@ d1 = War.make_war_deck(d1)
 d2 = War.make_war_deck(d2)
 
 loop =
-  fn decks, self ->
+  fn decks, acc, self ->
     War.play_hand(decks)
     |> case do
-      {:win, result} -> {:win, result}
-      decks -> self.(decks, self)
+      {:win, result} -> {result, acc}
+      decks -> self.(decks, acc + 1, self)
     end
   end
 
-loop.({d1, d2}, loop)
-|> IO.inspect()
+  
+{time, {winner, hands}} = :timer.tc(fn -> loop.({d1, d2}, 1, loop) end)
+
+IO.inspect(nanoseconds: div(time,1_000), winner: winner, hands: hands)
