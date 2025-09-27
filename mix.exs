@@ -7,7 +7,24 @@ defmodule CardSim.MixProject do
       version: "0.1.0",
       elixir: "~> 1.18",
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      description: description(),
+      package: package()
+    ]
+  end
+  
+  defp description() do
+    "Playing card game simulation library for Elixir."
+  end
+  
+  defp package() do
+    [
+      # This option is only needed when you don't want to use the OTP application name
+      name: "card_sim",
+      # These are the default files included in the package
+      files: ~w(lib .formatter.exs mix.exs README* LICENSE*),
+      licenses: ["GPL-3.0-or-later"],
+      links: %{"GitHub" => "https://github.com/jimurrito/cardsim"}
     ]
   end
 
@@ -21,8 +38,7 @@ defmodule CardSim.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      # {:dep_from_hexpm, "~> 0.3.0"},
-      # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
+      {:ex_doc, ">= 0.0.0", only: :dev, runtime: false}
     ]
   end
 end

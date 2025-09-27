@@ -21,3 +21,5 @@ card_sim-*.tar
 
 # Temporary files, for example, from tests.
 /tmp/
+
+.*.bash

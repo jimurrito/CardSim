@@ -7,10 +7,15 @@ Playing card game simulation library for Elixir.
 ```elixir
 defp deps do
   [
+    # From HexPM 
+    {:card_sim, ">= 0.0.0"}
+    # From Git repo
     {:dep_from_git, git: "https://github.com/jimurrito/CardSim.git", tag: "0.1.0"}
   ]
 end
 ```
+
+**[Link to Hex.pm](https://hex.pm/packages/card_sim)**
 
 ## Quick Start
 
