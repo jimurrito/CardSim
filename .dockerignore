@@ -1,7 +1,0 @@
-dockerfile
-.dockerignore
-mix.lock
-shell.nix
-README.md
-./runbook
-./db

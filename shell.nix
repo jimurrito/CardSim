@@ -20,7 +20,6 @@ pkgs.mkShell {
     bat
     gh
     inetutils
-    starship
     fish
   ];
 
@@ -28,15 +27,15 @@ pkgs.mkShell {
     #
     # Source ENVVARs
     source .env
-    #
+    # 
     mix Deps.get
     #
-    starship prompt
     echo "Run 'iex -S mix' to start the Application."
     echo -e "Then run ':observer.start()', if you want to start observer.\n"
     #
     fish
     #
+    docker kill "markserv_$(basename "$(pwd)")"
     #
     exit
   '';
