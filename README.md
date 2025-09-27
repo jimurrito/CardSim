@@ -36,7 +36,8 @@ A deck is represented by a list of these card tuples.
 
 - `{0, 2}` => 2 of Spades
 - `{1, 13}` => King of Clubs
-- `{8, 99}` => Red Joker
+- `{3, 10}` => 10 of Hearts
+- `{8, 99}` => Black Joker
 
 
 ### Code Examples
